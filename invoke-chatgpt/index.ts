@@ -1,4 +1,4 @@
-import { Context, HttpRequest } from "@azure/functions";
+import { Context } from "@azure/functions";
 
 const params = {
   messages: [
@@ -29,6 +29,7 @@ const httpTrigger = async function (context: Context): Promise<void> {
   const res = await fetch(url, options);
   const completion = await res.json();
 
+  // ChatGPT APIからの応答をHTTPレスポンスのレスポンスボディとして返す
   context.res = {
     body: completion.choices[0].message.content,
   };
