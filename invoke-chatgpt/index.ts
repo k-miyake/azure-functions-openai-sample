@@ -15,7 +15,6 @@ const params = {
   stop: null,
 };
 
-// HTTPトリガーを処理するAzure Function
 const httpTrigger = async function (context: Context): Promise<void> {
   const url = process.env.OPENAI_ENDPOINT;
   const options = {
@@ -30,7 +29,6 @@ const httpTrigger = async function (context: Context): Promise<void> {
   const res = await fetch(url, options);
   const completion = await res.json();
 
-  // ChatGPT APIからの応答をHTTPレスポンスのレスポンスボディとして返す
   context.res = {
     body: completion.choices[0].message.content,
   };
